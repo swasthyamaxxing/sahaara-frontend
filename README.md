@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# {NAME} Frontend
 
-## Getting Started
+Frontend for the **{NAME}** project built with **Next.js**.
 
-First, run the development server:
+---
+
+# Prerequisites
+
+Before getting started, make sure you have:
+
+- Node.js (v20 or later recommended)
+- npm (comes with Node.js)
+- Git
+
+Check your installations:
+
+```bash
+node -v
+npm -v
+git --version
+```
+
+---
+
+# Getting Started
+
+## 1. Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+## 2. Move into the project directory
+
+```bash
+cd <project-folder>
+```
+
+## 3. Install dependencies
+
+```bash
+npm install
+```
+
+## 4. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# Common Commands
 
-To learn more about Next.js, take a look at the following resources:
+## Start development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Create a production build (Always run before pushing)
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Run production build locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run start
+```
+
+## Run linting
+
+```bash
+npm run lint
+```
+
+---
+
+# Git Workflow
+
+## Before starting any work
+
+Always switch to the `main` branch and pull the latest changes.
+
+```bash
+git checkout main
+git pull origin main
+```
+
+---
+
+## Create a new feature branch
+
+Create a branch from the updated `main` branch.
+
+```bash
+git checkout -b feature/your-feature-name
+```
+
+Examples:
+
+```bash
+git checkout -b feature/login-page
+git checkout -b feature/navbar
+git checkout -b fix/footer-spacing
+```
+
+---
+
+## Switch to an existing branch
+
+```bash
+git checkout branch-name
+```
+
+Example:
+
+```bash
+git checkout feature/login-page
+```
+
+---
+
+## Check your current branch
+
+```bash
+git branch
+```
+
+The current branch will have a `*` next to it.
+
+---
+
+## Push your branch
+
+The first time:
+
+```bash
+git push -u origin feature/your-feature-name
+```
+
+After that:
+
+```bash
+git push
+```
+
+---
+
+# Team Rules
+
+✅ Always pull the latest changes from `main` before creating a new branch.
+
+✅ Create a separate branch for every feature or bug fix.
+
+✅ Run the following before every push:
+
+```bash
+npm run build
+```
+
+If the build fails, fix the errors before pushing.
+
+✅ Commit frequently with meaningful commit messages.
+
+✅ Open a Pull Request (PR) when your feature is complete.
+
+❌ **Never push directly to the `main` branch.**
+
+❌ **Never develop directly on the `main` branch.**
+
+❌ **Do not merge your own Pull Request unless instructed.**
+
+---
+
+# Project Structure
+
+```
+src/
+├── app/
+├── assets/
+├── components/
+│   ├── shared/
+│   ├── ui/
+│   └── ...
+├── services/
+├── hooks/
+├── lib/
+├── constants/
+├── types/
+└── utils/
+```
+
+---
+
+# Notes
+
+- Run `npm install` whenever new dependencies are added.
+- If you encounter unexpected issues, try reinstalling dependencies:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+(Windows PowerShell)
+
+```powershell
+Remove-Item node_modules -Recurse -Force
+Remove-Item package-lock.json
+npm install
+```
+
+- Keep your branch up to date by pulling the latest changes from `main` before starting new work.
