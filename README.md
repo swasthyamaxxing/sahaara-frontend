@@ -1,6 +1,6 @@
-# {NAME} Frontend
+# Sahaara Frontend
 
-Frontend for the **{NAME}** project built with **Next.js**.
+Frontend for the **Sahaara** project built with **Next.js**.
 
 ---
 
@@ -27,13 +27,13 @@ git --version
 ## 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/swasthyamaxxing/sahaara-frontend.git
 ```
 
 ## 2. Move into the project directory
 
 ```bash
-cd <project-folder>
+cd sahaara-frontend
 ```
 
 ## 3. Install dependencies
