@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${roboto.className} h-full antialiased`}
     >
-      <body className={`min-h-full flex flex-col`}>
+      <body className={`min-h-full scrollbar flex flex-col`}>
         {/* Global font rules: headings use Playfair, rest use Roboto. Fonts are loaded above via next/font. */}
         <style>{`
           h1, h2, h3, h4, h5, h6 { font-family: ${playfair.style.fontFamily}; }
