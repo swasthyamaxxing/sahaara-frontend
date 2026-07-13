@@ -6,6 +6,9 @@ import bg from '@/assets/bgImages/oldPeople.svg'
 import { Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link';
 import GoogleIcon from '@/assets/logos/GoogleIcon.svg';
+import { signupApi } from '@/services/api/auth.api';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -15,12 +18,30 @@ const Register = () => {
     confirmPassword: '',
     fullName: '',
     gender: '',
+    age: '',
     role: "caretaker"
   })
+  const router = useRouter();
 
-  const handleRegister = () => {
-    console.log('Registering with:', form.email, form.password, form.confirmPassword, form.fullName, form.gender, form.role)
-  }
+  const handleRegister = async () => {
+    try {
+      const res = await signupApi(
+        form.email,
+        form.password,
+        form.confirmPassword,
+        form.fullName,
+        form.gender,
+        form.age,
+        form.role
+      );
+      toast.success(res.message || 'Registration successful!');
+      router.push('/care-taker/dashboard');
+      console.log('Registering with:', res);
+    } catch (error: Error | any) { //eslint-disable-line
+      toast.error('Error during registration: ' + (error.message || error));
+      console.error('Error during registration:', error.message || error);
+    }
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#c9b998] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
@@ -177,7 +198,7 @@ const Register = () => {
               type="button"
               className="flex w-full hover:cursor-pointer items-center justify-center gap-2 rounded-full border border-[#d8ccb0] bg-white py-3 text-sm font-medium text-[#3a2f28] transition hover:bg-[#f5f0e4]"
             >
-              <Image 
+              <Image
                 src={GoogleIcon}
                 alt="Google Icon"
                 width={20}

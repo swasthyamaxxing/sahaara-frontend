@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Playfair_Display } from 'next/font/google';
-import {Roboto} from 'next/font/google';
+import { Roboto } from 'next/font/google';
+import { Toaster } from "@/components/ui/sonner";
 
 // Instantiate the font configuration
 const playfair = Playfair_Display({
@@ -38,6 +39,7 @@ export default function RootLayout({
           body, input, button, textarea, select, p, span, a, li { font-family: ${roboto.style.fontFamily}; }
         `}</style>
         {children}
+        <Toaster position="top-right" />
       </body>
     </html>
   );

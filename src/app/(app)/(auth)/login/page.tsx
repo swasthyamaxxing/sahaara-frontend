@@ -6,6 +6,10 @@ import bg from '@/assets/bgImages/oldPeople.svg'
 import { Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link';
 import GoogleIcon from '@/assets/logos/GoogleIcon.svg';
+import { toast } from 'sonner';
+import { loginApi } from '@/services/api/auth.api';
+import { useRouter } from 'next/navigation';
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -13,10 +17,23 @@ const Login = () => {
     email: '',
     password: ''
   })
+  const router = useRouter();
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    console.log('Logging in with:', form.email, form.password)
+  const handleLogin = async () => {
+    try {
+      const res = await loginApi(form.email, form.password);
+
+      if (res?.data?.role === 'care-taker') {
+        router.push('/care-taker/dashboard');
+      } else {
+        router.push('/patient/dashboard');
+      }
+      
+      toast.success(res.message || 'Login successful!');
+    } catch (error: Error | any) { //eslint-disable-line
+      toast.error(error?.response?.data?.message || error.message || 'Something went wrong')
+      console.error(error)
+    }
   }
 
   return (
@@ -118,7 +135,7 @@ const Login = () => {
               type="button"
               className="flex w-full hover:cursor-pointer items-center justify-center gap-2 rounded-full border border-[#d8ccb0] bg-white py-3 text-sm font-medium text-[#3a2f28] transition hover:bg-[#f5f0e4]"
             >
-              <Image 
+              <Image
                 src={GoogleIcon}
                 alt="Google Icon"
                 width={20}
