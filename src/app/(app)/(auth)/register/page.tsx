@@ -9,6 +9,7 @@ import GoogleIcon from '@/assets/logos/GoogleIcon.svg';
 import { signupApi } from '@/services/api/auth.api';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { setAccessToken } from '@/lib/utils';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -34,8 +35,17 @@ const Register = () => {
         form.age,
         form.role
       );
+      const role = res.role as 'caretaker' | 'patient' | undefined;
+
       toast.success(res.message || 'Registration successful!');
-      router.push('/care-taker/dashboard');
+      setAccessToken(res.accessToken, role);
+
+      if (role === 'caretaker') {
+        router.push('/care-taker/dashboard');
+      } else {
+        router.push('/patient/dashboard');
+      }
+
       console.log('Registering with:', res);
     } catch (error: Error | any) { //eslint-disable-line
       toast.error('Error during registration: ' + (error.message || error));
@@ -92,6 +102,7 @@ const Register = () => {
                   value={form.fullName}
                   onChange={(e) => setForm({ ...form, fullName: e.target.value })}
                   placeholder="Your full name"
+                  required
                   className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
                 />
               </div>
@@ -106,6 +117,7 @@ const Register = () => {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="username@gmail.com"
+                  required
                   className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
                 />
               </div>
@@ -121,6 +133,7 @@ const Register = () => {
                     placeholder="••••••••"
                     value={form.password}
                     onChange={(e) => setForm({ ...form, password: e.target.value })}
+                    required
                     className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 pr-10 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
                   />
                   <button
@@ -145,6 +158,7 @@ const Register = () => {
                     placeholder="••••••••"
                     value={form.confirmPassword}
                     onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+                    required
                     className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 pr-10 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
                   />
                   <button
@@ -159,6 +173,22 @@ const Register = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
+                <label htmlFor="age" className="text-sm font-medium text-[#3a2f28]">
+                  Age
+                </label>
+                <input
+                  id="age"
+                  type="number"
+                  min="1"
+                  value={form.age}
+                  onChange={(e) => setForm({ ...form, age: e.target.value })}
+                  placeholder="Enter your age"
+                  required
+                  className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
                 <label htmlFor="gender" className="text-sm font-medium text-[#3a2f28]">
                   Gender
                 </label>
@@ -166,6 +196,7 @@ const Register = () => {
                   id="gender"
                   value={form.gender}
                   onChange={(e) => setForm({ ...form, gender: e.target.value })}
+                  required
                   className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-3 py-2 text-sm text-[#3a2f28] outline-none focus:border-brand-red"
                 >
                   <option value="">Select</option>

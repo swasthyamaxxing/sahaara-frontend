@@ -9,6 +9,7 @@ import GoogleIcon from '@/assets/logos/GoogleIcon.svg';
 import { toast } from 'sonner';
 import { loginApi } from '@/services/api/auth.api';
 import { useRouter } from 'next/navigation';
+import { setAccessToken } from '@/lib/utils';
 
 
 const Login = () => {
@@ -22,13 +23,16 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await loginApi(form.email, form.password);
+      const role = res.role as 'caretaker' | 'patient' | undefined;
 
-      if (res?.data?.role === 'care-taker') {
+      setAccessToken(res.accessToken, role);
+
+      if (role === 'caretaker') {
         router.push('/care-taker/dashboard');
       } else {
         router.push('/patient/dashboard');
       }
-      
+
       toast.success(res.message || 'Login successful!');
     } catch (error: Error | any) { //eslint-disable-line
       toast.error(error?.response?.data?.message || error.message || 'Something went wrong')
