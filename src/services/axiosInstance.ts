@@ -1,3 +1,4 @@
+import { getAccessToken } from '@/lib/utils';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
@@ -7,11 +8,14 @@ const axiosInstance = axios.create({
     },
 })
 
-axiosInstance.interceptors.request.use(
-    (config) => {
-        // You can modify the request config here if needed
-        return config;
+axiosInstance.interceptors.request.use((config => {
+    const token = getAccessToken()
+    if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`
     }
-);
+    return config
+}), (error) => {
+    return Promise.reject(error)
+})
 
 export default axiosInstance;
