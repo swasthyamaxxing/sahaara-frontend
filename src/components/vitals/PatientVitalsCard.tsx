@@ -22,7 +22,7 @@ const vitalsData = [
 
 const PatientVitalsCard = () => {
   return (
-    <div className="bg-[#FFFFFF59] rounded-[48px] w-full max-w-[360px] min-h-[480px] p-6 border-[#FFFFFF4D] shadow-lg shadow-black/5">
+    <div className="bg-[#FFFFFF59] rounded-[48px] w-full max-w-90 min-h-120 p-6 border-[#FFFFFF4D] shadow-lg shadow-black/5">
       <div className="grid grid-cols-[1fr_auto] items-center gap-4 mb-6">
         <span className="text-brand-red text-2xl font-semibold">Blood Pressure</span>
         <span className="rounded-full bg-[#DCFCE7] px-4 py-1.5 text-sm font-semibold text-[#15803D]">
@@ -39,7 +39,7 @@ const PatientVitalsCard = () => {
         </div>
 
         <div className="rounded-[32px] bg-[#F2F8EE] p-4">
-          <div className="h-[240px] w-full rounded-[28px] bg-white/80 p-3">
+          <div className="h-60 w-full rounded-[28px] bg-white/80 p-3">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={vitalsData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#d9e4d8" />
