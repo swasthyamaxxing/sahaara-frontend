@@ -31,6 +31,7 @@ const BookAppointment = () => {
     const params = useParams<{ id: string }>()
     const [appointmentType, setAppointmentType] = useState('Consultation')
     const [selectedTime, setSelectedTime] = useState('11:15 AM')
+    const [customTime, setCustomTime] = useState('')
     const [selectedDate, setSelectedDate] = useState(9)
     const [selectedDoctor, setSelectedDoctor] = useState('aarav-sharma')
     const [otherCareType, setOtherCareType] = useState('')
@@ -113,7 +114,10 @@ const BookAppointment = () => {
                                 <button
                                     key={time}
                                     type="button"
-                                    onClick={() => setSelectedTime(time)}
+                                    onClick={() => {
+                                        setSelectedTime(time)
+                                        setCustomTime('')
+                                    }}
                                     className={`h-8 rounded-full border text-sm transition-colors ${selectedTime === time
                                         ? 'border-brand-red bg-brand-red font-bold text-white'
                                         : 'border-white/55 bg-white/15 text-[#3b3428] hover:bg-white/35'}`}
@@ -122,6 +126,16 @@ const BookAppointment = () => {
                                 </button>
                             ))}
                         </div>
+                        <input
+                            type="time"
+                            aria-label="Custom appointment time"
+                            value={customTime}
+                            onChange={(event) => {
+                                setCustomTime(event.target.value)
+                                setSelectedTime(event.target.value)
+                            }}
+                            className="mt-3 h-11 w-full rounded-full border border-white/55 bg-white/15 px-5 text-base text-[#554240] outline-none focus:border-brand-red"
+                        />
                     </fieldset>
 
                     <button
