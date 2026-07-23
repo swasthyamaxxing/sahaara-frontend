@@ -117,24 +117,24 @@ const LogVitals = () => {
   }
 
   return (
-        <main className="bg-[#c9b998] max-w-7xl border mx-auto h-auto rounded-4xl m-4 p-9">
-            <div className="tracking-tight leading-loose mb-5 border-b-2 border-[#707070] pb-5">
-                <h1 className="text-4xl font-bold text-brand-red">Record New Vitals</h1>
+        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
+            <div className="tracking-tight leading-loose mb-5 border-b-2 border-[#707070] pb-4 sm:pb-5">
+                <h1 className="text-2xl sm:text-4xl font-bold text-brand-red">Record New Vitals</h1>
             </div>
-            <div className="w-full h-auto bg-[#FFFFFF80]/50 border rounded-4xl p-10 flex flex-col gap-6">
-                <h2 className="text-[32px] font-bold text-brand-red">Biometric Data</h2>
+            <div className="w-full bg-[#FFFFFF80]/50 border border-white/60 rounded-2xl sm:rounded-4xl p-4 sm:p-8 lg:p-10 flex flex-col gap-6">
+                <h2 className="text-xl sm:text-3xl font-bold text-brand-red">Biometric Data</h2>
                 <hr className="border-white" />
                 <div className="flex flex-col gap-6">
                   {entries.map((entry) => (
-                    <div key={entry.id} className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                      <div className="flex flex-col gap-2 flex-1 min-w-45">
-                        <p className="text-[#554240CC]">Select Vital</p>
+                    <div key={entry.id} className="flex flex-col gap-4 lg:flex-row lg:items-center justify-between bg-white/30 sm:bg-transparent p-4 sm:p-0 rounded-xl sm:rounded-none border sm:border-none border-white/40">
+                      <div className="flex flex-col gap-2 flex-1 w-full">
+                        <p className="text-xs sm:text-sm text-[#554240CC] font-medium">Select Vital</p>
                         <Combobox
                           items={vitalsOptions}
                           value={entry.vital}
                           onValueChange={(value) => updateEntry(entry.id, { vital: value ?? '' })}
                         >
-                          <ComboboxInput className="bg-[#FFFFFF66] text-black" placeholder="Select a vital sign" />
+                          <ComboboxInput className="bg-[#FFFFFF66] text-black w-full" placeholder="Select a vital sign" />
                           <ComboboxContent>
                             <ComboboxEmpty>No items found.</ComboboxEmpty>
                             <ComboboxList>
@@ -148,20 +148,20 @@ const LogVitals = () => {
                         </Combobox>
                       </div>
 
-                      <div className="flex flex-col gap-2 flex-1 min-w-45">
-                        <p className="text-[#554240CC]">Enter Value</p>
+                      <div className="flex flex-col gap-2 flex-1 w-full">
+                        <p className="text-xs sm:text-sm text-[#554240CC] font-medium">Enter Value</p>
                         <Input
-                          className="bg-white px-5 py-3 text-black border-[#6B7280]"
+                          className="bg-white px-4 sm:px-5 py-2.5 sm:py-3 text-black border-[#6B7280] w-full"
                           placeholder="eg: 118/76"
                           value={entry.value}
                           onChange={(event) => updateEntry(entry.id, { value: event.target.value })}
                         />
                       </div>
 
-                      <div className="flex flex-col gap-2 flex-1 min-w-45">
-                        <p className="text-[#554240CC]">Recorded At</p>
+                      <div className="flex flex-col gap-2 flex-1 w-full">
+                        <p className="text-xs sm:text-sm text-[#554240CC] font-medium">Recorded At</p>
                         <Input
-                          className="bg-white px-5 py-3 text-black border-[#6B7280]"
+                          className="bg-white px-4 sm:px-5 py-2.5 sm:py-3 text-black border-[#6B7280] w-full"
                           placeholder="eg: 9 AM"
                           value={entry.recordedAt}
                           onChange={(event) => updateEntry(entry.id, { recordedAt: event.target.value })}
@@ -170,25 +170,25 @@ const LogVitals = () => {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between pt-2">
                     <button
                         type="button"
-                        className="border border-dashed border-brand-red text-brand-red px-5 py-3 rounded-lg"
+                        className="border border-dashed border-brand-red text-brand-red px-5 py-3 rounded-lg hover:bg-brand-red/5 font-medium transition-colors w-full sm:w-auto"
                         onClick={addEntry}
                     >
                         + Add Another Vitals
                     </button>
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full sm:w-auto">
                         <button
                             type="button"
-                            className="bg-brand-red text-white px-6 py-3 rounded-lg"
+                            className="bg-brand-red/10 text-brand-red hover:bg-brand-red/20 px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto"
                             onClick={removeLastEntry}
                         >
                             Cancel
                         </button>
                         <button
                             type="button"
-                            className="bg-brand-red text-white px-6 py-3 rounded-lg"
+                            className="bg-brand-red hover:bg-[#7a1821] text-white px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto"
                             onClick={handleSubmit}
                         >
                             Submit

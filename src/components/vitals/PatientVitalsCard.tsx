@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import {
   ResponsiveContainer,
@@ -20,31 +20,43 @@ const vitalsData = [
   { day: 'Sun', value: 120 },
 ]
 
-const PatientVitalsCard = () => {
+interface PatientVitalsCardProps {
+  title?: string
+  value?: string
+  unit?: string
+  status?: string
+}
+
+const PatientVitalsCard = ({
+  title = 'Blood Pressure',
+  value = '118/76',
+  unit = 'mmHg',
+  status = 'Normal',
+}: PatientVitalsCardProps) => {
   return (
-    <div className="bg-[#FFFFFF59] rounded-[48px] w-full max-w-90 min-h-120 p-6 border-[#FFFFFF4D] shadow-lg shadow-black/5">
-      <div className="grid grid-cols-[1fr_auto] items-center gap-4 mb-6">
-        <span className="text-brand-red text-2xl font-semibold">Blood Pressure</span>
-        <span className="rounded-full bg-[#DCFCE7] px-4 py-1.5 text-sm font-semibold text-[#15803D]">
-          Normal
+    <div className="bg-[#FFFFFF59] rounded-3xl sm:rounded-[48px] w-full p-4 sm:p-6 border border-white/50 shadow-lg shadow-black/5 flex flex-col justify-between">
+      <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
+        <span className="text-brand-red text-lg sm:text-2xl font-semibold truncate">{title}</span>
+        <span className="shrink-0 rounded-full bg-[#DCFCE7] px-3 sm:px-4 py-1 text-xs sm:text-sm font-semibold text-[#15803D]">
+          {status}
         </span>
       </div>
 
-      <div className="grid gap-5">
+      <div className="grid gap-4 sm:gap-5">
         <div>
-          <h2 className="text-brand-red font-bold text-[3.25rem] leading-none">
-            118/76
+          <h2 className="text-brand-red font-bold text-3xl sm:text-[3.25rem] leading-none tracking-tight">
+            {value}
           </h2>
-          <p className="mt-3 text-sm text-slate-700/80">mmHg</p>
+          <p className="mt-2 text-xs sm:text-sm text-slate-700/80 font-medium">{unit}</p>
         </div>
 
-        <div className="rounded-[32px] bg-[#F2F8EE] p-4">
-          <div className="h-60 w-full rounded-[28px] bg-white/80 p-3">
+        <div className="rounded-2xl sm:rounded-[32px] bg-[#F2F8EE] p-3 sm:p-4">
+          <div className="h-48 sm:h-60 w-full rounded-xl sm:rounded-[28px] bg-white/80 p-2 sm:p-3">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={vitalsData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#d9e4d8" />
                 <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 12 }} />
-                <YAxis hide domain={[110, 130]} />
+                <YAxis hide domain={['dataMin - 10', 'dataMax + 10']} />
                 <Tooltip cursor={false} contentStyle={{ borderRadius: 12, border: 'none', backgroundColor: '#fff' }} />
                 <Line
                   type="monotone"

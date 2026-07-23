@@ -52,12 +52,12 @@ const BookAppointment = () => {
     }
 
     return (
-        <main className="mx-4 min-h-screen max-w-7xl rounded-4xl bg-[#c9b998] p-5 sm:p-8 lg:mx-auto lg:p-9">
+        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-screen rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
             <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-                <section className="flex min-h-146.25 flex-col rounded-[1.45rem] border border-white/55 bg-white/25 p-8 shadow-[0_10px_25px_rgba(104,78,42,0.08)] sm:p-10">
+                <section className="flex flex-col rounded-[1.45rem] border border-white/55 bg-white/25 p-5 sm:p-8 lg:p-10 shadow-[0_10px_25px_rgba(104,78,42,0.08)]">
                     <h1 className="text-2xl font-bold text-brand-red sm:text-[2rem]">Reminder Details</h1>
 
-                    <label className="mt-9 text-base font-bold tracking-wide text-[#554240]" htmlFor="doctor">
+                    <label className="mt-6 sm:mt-8 text-sm sm:text-base font-bold tracking-wide text-[#554240]" htmlFor="doctor">
                         DOCTOR
                     </label>
                     <Combobox
@@ -67,7 +67,7 @@ const BookAppointment = () => {
                     >
                         <ComboboxInput
                             id="doctor"
-                            className="mt-2 h-12 w-full rounded-full border-white/50 bg-white/35 px-5 text-base text-[#3b3428]"
+                            className="mt-2 h-11 sm:h-12 w-full rounded-full border-white/50 bg-white/35 px-4 sm:px-5 text-sm sm:text-base text-[#3b3428]"
                             placeholder="Select a doctor"
                         />
                         <ComboboxContent>
@@ -82,15 +82,15 @@ const BookAppointment = () => {
                         </ComboboxContent>
                     </Combobox>
 
-                    <fieldset className="mt-7">
-                        <legend className="text-base font-bold tracking-wide text-[#554240]">APPOINTMENT TYPE</legend>
+                    <fieldset className="mt-6">
+                        <legend className="text-sm sm:text-base font-bold tracking-wide text-[#554240]">APPOINTMENT TYPE</legend>
                         <div className="mt-2 grid grid-cols-2 gap-2">
                             {appointmentTypes.map((type) => (
                                 <button
                                     key={type}
                                     type="button"
                                     onClick={() => setAppointmentType(type)}
-                                    className={`h-11 rounded-full border px-3 text-base transition-colors ${appointmentType === type
+                                    className={`h-10 sm:h-11 rounded-full border px-2 sm:px-3 text-xs sm:text-base transition-colors ${appointmentType === type
                                         ? 'border-brand-red bg-white/25 font-bold text-brand-red'
                                         : 'border-white/55 bg-white/15 text-[#554240] hover:bg-white/35'}`}
                                 >
@@ -99,7 +99,7 @@ const BookAppointment = () => {
                             ))}
                         </div>
                         <input
-                            className="mt-3 h-11 w-full rounded-full border border-white/55 bg-white/15 px-5 text-base text-[#554240] outline-none placeholder:text-[#554240]/50 focus:border-brand-red"
+                            className="mt-3 h-10 sm:h-11 w-full rounded-full border border-white/55 bg-white/15 px-4 sm:px-5 text-sm sm:text-base text-[#554240] outline-none placeholder:text-[#554240]/50 focus:border-brand-red"
                             placeholder="Other care type..."
                             aria-label="Other care type"
                             value={otherCareType}
@@ -107,9 +107,9 @@ const BookAppointment = () => {
                         />
                     </fieldset>
 
-                    <fieldset className="mt-7">
-                        <legend className="text-base font-bold tracking-wide text-[#554240]">PREFERRED TIME</legend>
-                        <div className="mt-2 grid grid-cols-3 gap-1">
+                    <fieldset className="mt-6">
+                        <legend className="text-sm sm:text-base font-bold tracking-wide text-[#554240]">PREFERRED TIME</legend>
+                        <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
                             {appointmentTimes.map((time) => (
                                 <button
                                     key={time}
@@ -118,7 +118,7 @@ const BookAppointment = () => {
                                         setSelectedTime(time)
                                         setCustomTime('')
                                     }}
-                                    className={`h-8 rounded-full border text-sm transition-colors ${selectedTime === time
+                                    className={`h-9 rounded-full border text-xs sm:text-sm transition-colors ${selectedTime === time
                                         ? 'border-brand-red bg-brand-red font-bold text-white'
                                         : 'border-white/55 bg-white/15 text-[#3b3428] hover:bg-white/35'}`}
                                 >
@@ -134,40 +134,40 @@ const BookAppointment = () => {
                                 setCustomTime(event.target.value)
                                 setSelectedTime(event.target.value)
                             }}
-                            className="mt-3 h-11 w-full rounded-full border border-white/55 bg-white/15 px-5 text-base text-[#554240] outline-none focus:border-brand-red"
+                            className="mt-3 h-10 sm:h-11 w-full rounded-full border border-white/55 bg-white/15 px-4 sm:px-5 text-sm sm:text-base text-[#554240] outline-none focus:border-brand-red"
                         />
                     </fieldset>
 
                     <button
                         type="button"
                         onClick={handleSubmit}
-                        className="mt-auto flex h-16 items-center justify-center gap-3 rounded-2xl bg-brand-red px-5 text-xl font-bold text-[#D7C6A8] transition-colors hover:bg-[#7a1821]"
+                        className="mt-6 sm:mt-8 flex h-14 sm:h-16 w-full items-center justify-center gap-3 rounded-2xl bg-brand-red px-5 text-lg sm:text-xl font-bold text-[#D7C6A8] transition-colors hover:bg-[#7a1821]"
                     >
                         {submitted ? 'Reminder Set' : 'Set Reminder'}
                         <Bell className="h-5 w-5" />
                     </button>
                 </section>
 
-                <div className="flex flex-col gap-3">
-                    <section className="rounded-[1.45rem] border border-white/55 bg-white/25 p-8 shadow-[0_10px_25px_rgba(104,78,42,0.08)] sm:p-10">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-2xl font-bold text-brand-red">Select Date</h2>
-                            <div className="flex items-center gap-3 text-[#3b3428]">
+                <div className="flex flex-col gap-5">
+                    <section className="rounded-[1.45rem] border border-white/55 bg-white/25 p-5 sm:p-8 shadow-[0_10px_25px_rgba(104,78,42,0.08)]">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                            <h2 className="text-xl sm:text-2xl font-bold text-brand-red">Select Date</h2>
+                            <div className="flex items-center gap-2 text-[#3b3428]">
                                 <span className="rounded-full bg-white/45 px-3 py-1 text-xs font-bold">October 2026</span>
-                                <button type="button" aria-label="Previous month" className="hover:text-brand-red"><ChevronLeft className="h-4 w-4" /></button>
-                                <button type="button" aria-label="Next month" className="hover:text-brand-red"><ChevronRight className="h-4 w-4" /></button>
+                                <button type="button" aria-label="Previous month" className="hover:text-brand-red p-1"><ChevronLeft className="h-4 w-4" /></button>
+                                <button type="button" aria-label="Next month" className="hover:text-brand-red p-1"><ChevronRight className="h-4 w-4" /></button>
                             </div>
                         </div>
 
-                        <div className="mt-7 grid grid-cols-7 gap-1 text-center text-xs font-bold text-[#554240] sm:gap-2">
-                            {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day) => <span key={day}>{day}</span>)}
+                        <div className="mt-5 sm:mt-7 grid grid-cols-7 gap-1 text-center text-xs font-bold text-[#554240] sm:gap-2">
+                            {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day) => <span key={day} className="py-1">{day}</span>)}
                             {calendarDays.map(({ day, muted }, index) => (
                                 <button
                                     key={`${day}-${index}`}
                                     type="button"
                                     disabled={muted}
                                     onClick={() => setSelectedDate(day)}
-                                    className={`aspect-square rounded-2xl border text-sm transition-colors ${muted
+                                    className={`aspect-square rounded-xl sm:rounded-2xl border text-xs sm:text-sm transition-colors flex items-center justify-center ${muted
                                         ? 'border-transparent text-[#554240]/25'
                                         : selectedDate === day
                                             ? 'border-brand-red bg-brand-red font-bold text-white shadow-[0_7px_12px_rgba(99,13,22,0.18)]'
@@ -178,19 +178,19 @@ const BookAppointment = () => {
                             ))}
                         </div>
 
-                        <div className="mt-7 border-t border-white/35 pt-6 text-sm text-[#554240]">
+                        <div className="mt-5 sm:mt-7 border-t border-white/35 pt-4 text-xs sm:text-sm text-[#554240]">
                             <p><span className="mr-2 text-brand-red">•</span>Selected date: <strong className="ml-1 text-brand-red">Friday, Oct {selectedDate}, 2026</strong></p>
                         </div>
                     </section>
 
-                    <section className="rounded-[1.45rem] border border-white/55 bg-white/25 p-7 shadow-[0_10px_25px_rgba(104,78,42,0.08)] sm:p-8">
-                        <h2 className="flex items-center gap-1 text-sm font-bold tracking-wide text-brand-red"><Clock3 className="h-3 w-3" /> RECENTLY SCHEDULED</h2>
-                        <div className="mt-3 flex items-center justify-between rounded-2xl bg-white/35 px-4 py-2 text-[#554240]">
+                    <section className="rounded-[1.45rem] border border-white/55 bg-white/25 p-5 sm:p-7 shadow-[0_10px_25px_rgba(104,78,42,0.08)]">
+                        <h2 className="flex items-center gap-1.5 text-xs sm:text-sm font-bold tracking-wide text-brand-red"><Clock3 className="h-4 w-4" /> RECENTLY SCHEDULED</h2>
+                        <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between rounded-2xl bg-white/35 px-4 py-3 text-[#554240] gap-2">
                             <div>
-                                <p className="font-bold text-brand-red">Leila Gupta</p>
-                                <p className="text-sm">Follow-up with Dr. Chen • Oct 4</p>
+                                <p className="font-bold text-brand-red text-sm sm:text-base">Leila Gupta</p>
+                                <p className="text-xs sm:text-sm text-[#554240]">Follow-up with Dr. Chen • Oct 4</p>
                             </div>
-                            <span className="rounded-full bg-white/55 px-3 py-1 text-[10px] font-bold text-brand-red">CONFIRMED</span>
+                            <span className="self-start sm:self-auto rounded-full bg-white/55 px-3 py-1 text-[10px] font-bold text-brand-red">CONFIRMED</span>
                         </div>
                     </section>
                 </div>
