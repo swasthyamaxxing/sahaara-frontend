@@ -52,7 +52,7 @@ const BookAppointment = () => {
     }
 
     return (
-        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-screen rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
+        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-screen rounded-3xl sm:rounded-4xl bg-[#D7C6A8] border p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
             <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
                 <section className="flex flex-col rounded-[1.45rem] border border-white/55 bg-white/25 p-5 sm:p-8 lg:p-10 shadow-[0_10px_25px_rgba(104,78,42,0.08)]">
                     <h1 className="text-2xl font-bold text-brand-red sm:text-[2rem]">Reminder Details</h1>

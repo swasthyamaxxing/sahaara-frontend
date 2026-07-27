@@ -30,7 +30,7 @@ export const CARE_TAKER_NAVBAR_CONSTANTS = [
     {
         id: 2,
         title: "Patients",
-        href: "/care-taker/records",
+        href: "/care-taker/patient-records",
     },
     {
         id: 3,

@@ -117,7 +117,7 @@ const LogVitals = () => {
   }
 
   return (
-        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
+        <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#D7C6A8] border p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
             <div className="tracking-tight leading-loose mb-5 border-b-2 border-[#707070] pb-4 sm:pb-5">
                 <h1 className="text-2xl sm:text-4xl font-bold text-brand-red">Record New Vitals</h1>
             </div>

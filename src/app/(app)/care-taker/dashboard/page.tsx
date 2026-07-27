@@ -34,7 +34,7 @@ const CareTakerDashboard = () => {
   ];
 
   return (
-    <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
+    <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] border max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#D7C6A8] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
       {/* Header section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#707070]/40 pb-5 gap-4">
         <div>

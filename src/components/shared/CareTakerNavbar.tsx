@@ -11,8 +11,8 @@ const CareTakerNavbar = () => {
     return (
         <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 my-3 sm:my-4">
             <div className="flex h-16 w-full items-center justify-between rounded-3xl md:rounded-full bg-brand-red px-5 sm:px-8 text-white shadow-md">
-                <Link href="/care-taker/dashboard" className="font-bold text-[#D7C6A8] text-2xl sm:text-3xl lg:text-4xl leading-8 tracking-tight">
-                    Sahaara
+                <Link href="/care-taker/dashboard">
+                    <h2 className="font-bold text-[#D7C6A8] text-2xl sm:text-3xl lg:text-4xl leading-8 tracking-tight">Sahaara</h2>
                 </Link>
 
                 {/* Desktop Nav Links */}

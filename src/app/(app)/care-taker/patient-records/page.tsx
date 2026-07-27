@@ -28,7 +28,7 @@ const PatientRecords = () => {
   const showEmptyState = !loading && (!status || count === 0 || patients.length === 0);
 
   return (
-    <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#c9b998] p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
+    <main className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] border max-w-7xl mx-auto min-h-[calc(100vh-6rem)] rounded-3xl sm:rounded-4xl bg-[#D7C6A8] border/30 p-4 sm:p-6 lg:p-9 my-4 shadow-xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#707070]/40 pb-5 gap-4 tracking-tight">
         <div>
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-red">Patient Registry</h1>

@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#c9b998] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+    <main className="flex min-h-screen items-center justify-center bg-[#D7C6A8] border px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
       <div className="grid max-w-7xl min-h-[86vh] w-full grid-cols-1 gap-8 rounded-[48px] border-2 border-white/80 bg-[#e9dfc9] p-8 lg:grid-cols-[1.15fr_0.85fr]">
         <section className="relative flex flex-col overflow-hidden">
           <h1 className="text-4xl font-bold text-brand-red">सहारा</h1>
