@@ -14,6 +14,7 @@ import { setAccessToken } from '@/lib/utils';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -21,6 +22,8 @@ const Login = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
+    setIsLoading(true)
+
     try {
       const res = await loginApi(form.email, form.password);
       const role = res.role as 'caretaker' | 'patient' | undefined;
@@ -37,6 +40,8 @@ const Login = () => {
     } catch (error: Error | any) { //eslint-disable-line
       toast.error(error?.response?.data?.message || error.message || 'Something went wrong')
       console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -123,9 +128,10 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="mt-1 w-full hover:cursor-pointer rounded-full bg-brand-red py-3 text-sm font-semibold text-white transition shadow-lg active:scale-95"
+                disabled={isLoading}
+                className="mt-1 w-full rounded-full bg-brand-red py-3 text-sm font-semibold text-white transition shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:bg-[#a94b54]"
               >
-                Sign In
+                {isLoading ? 'Signing in...' : 'Sign In'}
               </button>
             </form>
 

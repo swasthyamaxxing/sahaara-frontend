@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
 import { Patient } from '@/types/patient.types';
 
 interface PatientCardProps {
@@ -5,8 +9,10 @@ interface PatientCardProps {
 }
 
 const PatientCard = ({ patient }: PatientCardProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <div className="bg-[#FFFFFF40] border border-white/60 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+    <div className="relative bg-[#FFFFFF40] border border-white/60 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between gap-3 sm:gap-4">
         <div className="w-12 h-12 sm:w-14 sm:h-14 border-2 rounded-2xl bg-brand-red shrink-0" />
         <div className="min-w-0 flex-1">
@@ -29,9 +35,34 @@ const PatientCard = ({ patient }: PatientCardProps) => {
         </div>
       </div>
 
-      <button className="bg-[#e1cdaa] hover:bg-[#d5be98] text-brand-red w-full font-bold text-base sm:text-lg py-2.5 px-4 rounded-full transition-colors mt-2">
-        View Details
-      </button>
+      <div className="flex flex-col gap-3">
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((current) => !current)}
+          className="bg-[#e1cdaa] hover:bg-[#d5be98] text-brand-red w-full font-bold text-base sm:text-lg py-2.5 px-4 rounded-full transition-colors"
+        >
+          More
+        </button>
+
+        {isMenuOpen && (
+          <div className="absolute left-4 right-4 bottom-[4.5rem] z-10 rounded-3xl border border-white/60 bg-white/95 shadow-lg p-3">
+            <Link
+              href={`/care-taker/log-vitals/${patient.id}`}
+              className="block rounded-2xl px-4 py-3 text-sm font-semibold text-[#641E21] hover:bg-[#FDE8D6]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Log Vitals
+            </Link>
+            <Link
+              href={`/care-taker/book-appointment/${patient.id}`}
+              className="mt-2 block rounded-2xl px-4 py-3 text-sm font-semibold text-[#1F1B16] hover:bg-[#F3F1E8]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Book Appointment
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

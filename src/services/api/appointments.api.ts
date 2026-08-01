@@ -7,7 +7,7 @@ import {
 } from '@/types/appointment.types';
 
 export const getAppointments = async (patientId: number): Promise<AppointmentsResponse> => {
-  const res = await axiosInstance.get<AppointmentsResponse>(`/appointments/${patientId}/all`);
+  const res = await axiosInstance.get<AppointmentsResponse>(`/patients/${patientId}/appointments/`);
   return res.data;
 };
 
