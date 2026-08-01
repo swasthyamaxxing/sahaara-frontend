@@ -8,13 +8,19 @@ const axiosInstance = axios.create({
     },
 })
 
-axiosInstance.interceptors.request.use((config => {
+axiosInstance.interceptors.request.use((config) => {
     const token = getAccessToken()
+
     if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`
+        const headers = config.headers ?? {}
+        config.headers = {
+            ...(headers as Record<string, string>),
+            Authorization: `Bearer ${token}`,
+        } as typeof config.headers
     }
+
     return config
-}), (error) => {
+}, (error) => {
     return Promise.reject(error)
 })
 
