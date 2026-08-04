@@ -5,6 +5,7 @@ import PatientCard from '@/components/patients/PatientCard';
 import { UserPlusIcon } from 'lucide-react';
 import { getPatients } from '@/services/api/patients.api';
 import usePatientsStore from '@/store/patientsStore';
+import Link from 'next/link';
 
 const PatientRecords = () => {
   const { patients, status, message, count, setPatients, clearPatients } = usePatientsStore();
@@ -15,7 +16,7 @@ const PatientRecords = () => {
       try {
         const response = await getPatients();
         setPatients(response.data ?? [], response.status, response.message, response.count);
-      } catch (error) {
+      } catch {
         clearPatients();
       } finally {
         setLoading(false);
@@ -42,10 +43,12 @@ const PatientRecords = () => {
             </svg>
             Filter
           </button>
-          <button className="bg-brand-red flex-1 sm:flex-initial flex gap-2 items-center justify-center text-white py-2.5 px-4 rounded-xl text-sm font-semibold hover:bg-[#7a1821] transition-colors">
-            <UserPlusIcon className="w-4 h-4" />
-            Add Patient
-          </button>
+          <Link href={`/care-taker/add-patients`} className="w-full sm:w-auto hover:cursor-pointer">
+            <button className="bg-brand-red flex-1 sm:flex-initial flex gap-2 items-center justify-center text-white py-2.5 px-4 rounded-xl text-sm font-semibold hover:bg-[#7a1821] transition-colors">
+              <UserPlusIcon className="w-4 h-4" />
+              Add Patient
+            </button>
+          </Link>
         </div>
       </div>
 
