@@ -6,18 +6,23 @@ export const PATIENT_NAVBAR_CONSTANTS = [
     },
     {
         id: 2,
-        title: "Patient Records",
+        title: "Medical Records",
         href: "/patient/records",
     },
     {
         id: 3,
-        title: "Vitals History",
-        href: "/patient/vitals",
+        title: "Care Team",
+        href: "/patient/care-team",
     },
     {
         id: 4,
-        title: "Care Team",
-        href: "/patient/care-team",
+        title: "Appointments",
+        href: "/patient/appointments",
+    },
+    {
+        id: 5,
+        title: "Profile",
+        href: "/patient/profile",
     }
 ]
 
@@ -41,5 +46,10 @@ export const CARE_TAKER_NAVBAR_CONSTANTS = [
         id: 4,
         title: "Care Team",
         href: "/care-taker/care-team",
+    },
+    {
+        id: 5,
+        title: "Profile",
+        href: "/care-taker/profile",
     }
 ]

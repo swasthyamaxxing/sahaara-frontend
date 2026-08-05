@@ -1,7 +1,7 @@
 # Project TODO: Swasthya Maxxing
 
 ## 🛠️ Infrastructure & Global
-- [ ] **Implement `proxy.ts`**: Create a request/response interceptor for centralized authentication handling and API base URL management.
+- [x] **Implement `proxy.ts`**: Create a request/response interceptor for centralized authentication handling and API base URL management.
 - [ ] **Navbar Updates**: 
     - [ ] Update `CareTakerNavbar.tsx` with links to all caretaker modules (Patients, Vitals, Appointments, History, Medications, Assessments).
     - [ ] Update `PatientNavbar.tsx` with links to patient-facing views (Dashboard, My Appointments, My History).
@@ -14,13 +14,13 @@
 - [ ] **Critical Alerting**: Implement logic to flag and notify caretakers when a patient's logged vitals fall outside of safe ranges.
 
 ## 🤒 Patient Experience (The "Patient Gap")
-- [ ] **Dynamic Dashboard**: Replace hardcoded vitals cards with real-time data fetched from the API.
-- [ ] **Appointment Viewer**: Allow patients to see their scheduled and past appointments.
-- [ ] **Medical Record Access**: Provide a read-only view for patients to see their medical history and prescriptions.
-- [ ] **Health Trends**: Implement visual progress trackers (charts) so patients can see their health metrics over time.
+- [x] **Dynamic Dashboard**: Replace hardcoded vitals cards with real-time data fetched from the API.
+- [x] **Appointment Viewer**: Allow patients to see their scheduled and past appointments.
+- [x] **Medical Record Access**: Provide a read-only view for patients to see their medical history and prescriptions.
+- [x] **Health Trends**: Implement visual progress trackers (charts) so patients can see their health metrics over time.
 
 ## 📈 Clinical Logic & Analytics
-- [ ] **Data Visualization**: Integrate a charting library (e.g., Recharts) to visualize vital sign trends (BP, Heart Rate, Glucose).
+- [x] **Data Visualization**: Integrate a charting library (e.g., Recharts) to visualize vital sign trends (BP, Heart Rate, Glucose).
 - [ ] **Trend Analysis**: Add logic to calculate "health improvement" or "decline" based on historical vital data.
 
 ## 🏗️ Technical Debt & Refactoring
