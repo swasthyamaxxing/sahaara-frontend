@@ -27,8 +27,9 @@ const Login = () => {
     try {
       const res = await loginApi(form.email, form.password);
       const role = res.role as 'caretaker' | 'patient' | undefined;
+      const userId = res.id ? res.id.toString() : undefined;
 
-      setAccessToken(res.accessToken, role);
+      setAccessToken(res.accessToken, userId, role);
 
       if (role === 'caretaker') {
         router.push('/care-taker/dashboard');

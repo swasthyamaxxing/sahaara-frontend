@@ -5,11 +5,13 @@ import { twMerge } from "tailwind-merge"
 
 type UserRole = 'caretaker' | 'patient'
 
+type UserId = string | number
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const setAccessToken = (token: string, role?: UserRole): void => {
+export const setAccessToken = (token: string, id?: UserId, role?: UserRole): void => {
   try {
     setCookie('access_token', token, {
       path: '/',
@@ -17,6 +19,15 @@ export const setAccessToken = (token: string, role?: UserRole): void => {
       secure: process.env.NODE_ENV === 'production',
       maxAge: 60 * 60 * 24 * 30, // 30 days
     });
+
+    if (id !== undefined && id !== null) {
+      setCookie('user_id', id.toString(), {
+        path: '/',
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+      });
+    }
 
     if (role) {
       setCookie('user_role', role, {
@@ -45,6 +56,11 @@ export const clearAccessToken = (): void => {
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',
     });
+    deleteCookie('user_id', {
+      path: '/',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+    })
     console.log('Access token cleared');
   } catch (error) {
     console.error('Error clearing access token:', error);
@@ -59,6 +75,15 @@ export const getAccessToken = (): string | null => {
     return null;
   }
 };
+
+export const getUserId = (): string | null => {
+  try {
+    return getCookie('user_id') as string || null;
+  } catch (error) {
+    console.error('Error getting user id:', error);
+    return null;
+  }
+}
 
 export const hasAccessToken = (): boolean => {
   try {

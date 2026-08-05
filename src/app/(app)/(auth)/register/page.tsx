@@ -36,9 +36,10 @@ const Register = () => {
         form.role
       );
       const role = res.role as 'caretaker' | 'patient' | undefined;
+      const userId = res.id ? res.id.toString() : undefined;
 
       toast.success(res.message || 'Registration successful!');
-      setAccessToken(res.accessToken, role);
+      setAccessToken(res.accessToken, userId, role);
 
       if (role === 'caretaker') {
         router.push('/care-taker/dashboard');

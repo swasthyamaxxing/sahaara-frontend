@@ -6,6 +6,7 @@ import { UserPlusIcon } from 'lucide-react';
 import { getPatients } from '@/services/api/patients.api';
 import usePatientsStore from '@/store/patientsStore';
 import Link from 'next/link';
+import { getUserId } from '@/lib/utils';
 
 const PatientRecords = () => {
   const { patients, status, message, count, setPatients, clearPatients } = usePatientsStore();
@@ -14,7 +15,8 @@ const PatientRecords = () => {
   useEffect(() => {
     const loadPatients = async () => {
       try {
-        const response = await getPatients();
+        const caretakerId = getUserId();
+        const response = await getPatients(caretakerId!);
         setPatients(response.data ?? [], response.status, response.message, response.count);
       } catch {
         clearPatients();

@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Eye, EyeOff } from 'lucide-react'
 import bg from '@/assets/bgImages/oldPeople.svg'
+import { toast } from 'sonner'
+import { getUserId } from '@/lib/utils'
+import { postPatient } from '@/services/api/patients.api'
 
 const AddPatients = () => {
   const [activeTab, setActiveTab] = useState<'add' | 'link'>('add')
@@ -23,15 +26,43 @@ const AddPatients = () => {
     setForm((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsLoading(true)
+
     if (activeTab === 'add') {
-      console.log('Add patient', form)
+      const caretakerId = getUserId()
+
+      if (!caretakerId) {
+        toast.error('Unable to determine caretaker account. Please log in again.')
+        setIsLoading(false)
+        return
+      }
+
+      try {
+        await postPatient({
+          fullName: form.fullName,
+          email: form.email,
+          gender: form.gender,
+          age: form.age,
+          password: form.password,
+        }, caretakerId)
+
+        toast.success('Patient added successfully.')
+        setForm({ fullName: '', email: '', gender: '', age: '', password: '', existingId: '' })
+        //eslint-disable-next-line
+      } catch (error: any) {
+        toast.error(error?.response?.data?.message || 'Failed to add patient.')
+        console.error('Add patient error:', error)
+      } finally {
+        setIsLoading(false)
+      }
     } else {
-      console.log('Link existing patient', form.existingId)
+      toast('Link existing account coming soon.', {
+        description: 'This feature is not available yet.',
+      })
+      setIsLoading(false)
     }
-    setTimeout(() => setIsLoading(false), 400)
   }
 
   return (
@@ -191,30 +222,10 @@ const AddPatients = () => {
                   </button>
                 </>
               ) : (
-                <>
+                <div className="flex min-h-[22rem] flex-col items-center justify-center rounded-3xl border border-dashed border-[#d8ccb0] bg-[#f7f1e7] p-8 text-center">
                   <h2 className="text-3xl font-bold text-brand-red">Link Existing Patient</h2>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="existingId" className="text-sm font-medium text-[#3a2f28]">
-                      Patient ID or Email
-                    </label>
-                    <input
-                      id="existingId"
-                      value={form.existingId}
-                      onChange={(e) => handleChange('existingId', e.target.value)}
-                      placeholder="Enter linked patient ID or email"
-                      className="w-full rounded-lg border border-[#d8ccb0] bg-[#efe6d2] px-4 py-2.5 text-sm text-[#3a2f28] placeholder:text-[#9a8f78] outline-none focus:border-brand-red"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="mt-1 w-full rounded-full bg-brand-red py-3 text-sm font-semibold text-white transition shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:bg-[#a94b54]"
-                  >
-                    {isLoading ? 'Saving...' : 'Link Patient'}
-                  </button>
-                </>
+                  <p className="mt-4 text-sm text-[#62513e]">Comming soon</p>
+                </div>
               )}
 
               <p className="mt-6 text-center text-sm text-[#3a2f28]">

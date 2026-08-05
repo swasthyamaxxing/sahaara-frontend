@@ -13,6 +13,7 @@ type AuthUser = {
 };
 
 type AuthApiResponse = {
+    id: number;
     status: boolean;
     message: string;
     access_token: string;
@@ -26,6 +27,7 @@ const normalizeAuthResponse = (payload: AuthApiResponse) => ({
     tokenType: payload.token_type,
     user: payload.user,
     role: payload.user?.role,
+    id: payload.user?.id,
 });
 
 export const loginApi = async (email: string, password: string) => {
