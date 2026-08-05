@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CARE_TAKER_NAVBAR_CONSTANTS } from '@/constants/Navbar.constants';
-import { Bell, Menu, Search, X } from 'lucide-react';
+import { Menu, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { clearAccessToken } from '@/lib/utils';
 
@@ -36,16 +36,6 @@ const CareTakerNavbar = () => {
                 {/* Desktop Right items */}
                 <div className="hidden md:flex items-center gap-3 lg:gap-4">
                     <div className="relative">
-                        <input
-                            className="w-48 lg:w-60 h-10 rounded-full bg-[#FFFFFF1A] border-[#FFFFFF33] border outline-none pl-4 pr-9 py-2 text-sm placeholder:text-white/70 text-white"
-                            placeholder="Search Patients..."
-                        />
-                        <Search stroke="#FFFCFC" className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                    </div>
-                    <button type="button" aria-label="Notifications" className="p-2 rounded-full hover:bg-white/10 transition-colors">
-                        <Bell className="w-5 h-5 text-[#FFFCFC]" />
-                    </button>
-                    <div className="relative">
                         <button
                             type="button"
                             onClick={() => setProfileMenuOpen((prev) => !prev)}
@@ -68,9 +58,6 @@ const CareTakerNavbar = () => {
 
                 {/* Mobile Icons & Hamburger */}
                 <div className="flex items-center gap-2 md:hidden">
-                    <button type="button" aria-label="Notifications" className="p-2 rounded-full hover:bg-white/10">
-                        <Bell className="w-5 h-5 text-[#FFFCFC]" />
-                    </button>
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

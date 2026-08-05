@@ -5,7 +5,7 @@
 - [ ] **Navbar Updates**: 
     - [ ] Update `CareTakerNavbar.tsx` with links to all caretaker modules (Patients, Vitals, Appointments, History, Medications, Assessments).
     - [ ] Update `PatientNavbar.tsx` with links to patient-facing views (Dashboard, My Appointments, My History).
-- [ ] **Profile Management**: Create pages for users to update their personal information and manage account settings.
+- [x] **Profile Management**: Create pages for users to update their personal information and manage account settings.
 - [ ] **Notification System**: Implement a toast-based or in-app notification center for upcoming appointments and critical alerts.
 
 ## 👩‍⚕️ Caretaker Module Enhancements
