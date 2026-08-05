@@ -60,6 +60,20 @@ const PatientCard = ({ patient }: PatientCardProps) => {
             >
               Book Appointment
             </Link>
+            <Link
+              href={`/care-taker/medical-history/${patient.id}`}
+              className="mt-2 block rounded-2xl px-4 py-3 text-sm font-semibold text-[#1F1B16] hover:bg-[#F3F1E8]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Add Medical Record
+            </Link>
+            <Link
+              href={`/care-taker/medicinal-records/${patient.id}`}
+              className="mt-2 block rounded-2xl px-4 py-3 text-sm font-semibold text-[#1F1B16] hover:bg-[#F3F1E8]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Add Medication
+            </Link>
           </div>
         )}
       </div>
