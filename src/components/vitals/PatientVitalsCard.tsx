@@ -10,21 +10,17 @@ import {
   CartesianGrid,
 } from 'recharts'
 
-const vitalsData = [
-  { day: 'Mon', value: 118 },
-  { day: 'Tue', value: 122 },
-  { day: 'Wed', value: 121 },
-  { day: 'Thu', value: 119 },
-  { day: 'Fri', value: 120 },
-  { day: 'Sat', value: 123 },
-  { day: 'Sun', value: 120 },
-]
+type VitalChartPoint = {
+  timestamp: string
+  value: number
+}
 
 interface PatientVitalsCardProps {
   title?: string
   value?: string
   unit?: string
   status?: string
+  chartData?: VitalChartPoint[]
 }
 
 const PatientVitalsCard = ({
@@ -32,6 +28,7 @@ const PatientVitalsCard = ({
   value = '118/76',
   unit = 'mmHg',
   status = 'Normal',
+  chartData,
 }: PatientVitalsCardProps) => {
   return (
     <div className="bg-[#FFFFFF59] rounded-3xl sm:rounded-[48px] w-full p-4 sm:p-6 border border-white/50 shadow-lg shadow-black/5 flex flex-col justify-between">
@@ -52,22 +49,28 @@ const PatientVitalsCard = ({
 
         <div className="rounded-2xl sm:rounded-[32px] bg-[#F2F8EE] p-3 sm:p-4">
           <div className="h-48 sm:h-60 w-full rounded-xl sm:rounded-[28px] bg-white/80 p-2 sm:p-3">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={vitalsData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#d9e4d8" />
-                <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 12 }} />
-                <YAxis hide domain={['dataMin - 10', 'dataMax + 10']} />
-                <Tooltip cursor={false} contentStyle={{ borderRadius: 12, border: 'none', backgroundColor: '#fff' }} />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#9F1239"
-                  strokeWidth={3}
-                  dot={{ r: 3, fill: '#9F1239' }}
-                  activeDot={{ r: 5, fill: '#9F1239' }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            {chartData && chartData.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={chartData} margin={{ top: 10, right: 12, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#d9e4d8" />
+                  <XAxis dataKey="timestamp" axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 12 }} />
+                  <YAxis hide domain={['dataMin - 10', 'dataMax + 10']} />
+                  <Tooltip cursor={false} contentStyle={{ borderRadius: 12, border: 'none', backgroundColor: '#fff' }} />
+                  <Line
+                    type="monotone"
+                    dataKey="value"
+                    stroke="#9F1239"
+                    strokeWidth={3}
+                    dot={{ r: 3, fill: '#9F1239' }}
+                    activeDot={{ r: 5, fill: '#9F1239' }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-xs text-[#64748B]">
+                No trend data available
+              </div>
+            )}
           </div>
         </div>
       </div>

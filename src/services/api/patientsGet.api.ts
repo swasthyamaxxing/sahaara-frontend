@@ -10,6 +10,11 @@ export const getVitalLabels = async () =>{
     return res.data;
 }
 
+export const getVitals = async (patientId: string) =>{
+    const res = await axiosInstance.get(`/vitals/${patientId}`);
+    return res.data;
+}
+
 export const getAllAppointments = async (patientId: string) => {
     const res = await axiosInstance.get(`/patients/${patientId}/appointments`);
     return res.data;
