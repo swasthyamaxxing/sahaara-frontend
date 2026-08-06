@@ -9,3 +9,10 @@ export interface MedicalHistoryPayload {
   diagnosed_by: string;
   review_date: string;
 }
+
+export interface MedicalHistoryRecord extends MedicalHistoryPayload {
+  id: number;
+  patient_id?: number;
+  created_at?: string;
+  updated_at?: string;
+}

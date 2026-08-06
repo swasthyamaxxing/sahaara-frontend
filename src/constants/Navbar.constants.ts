@@ -11,11 +11,16 @@ export const PATIENT_NAVBAR_CONSTANTS = [
     },
     {
         id: 3,
+        title: "Medications",
+        href: "/patient/medications",
+    },
+    {
+        id: 4,
         title: "Appointments",
         href: "/patient/appointments",
     },
     {
-        id: 4,
+        id: 5,
         title: "Profile",
         href: "/patient/profile",
     }
