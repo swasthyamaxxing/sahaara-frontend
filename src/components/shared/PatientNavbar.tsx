@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PATIENT_NAVBAR_CONSTANTS } from '@/constants/Navbar.constants';
-import { Home, Menu, Search, X } from 'lucide-react';
+import { Home, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { clearAccessToken } from '@/lib/utils';
 
@@ -39,9 +39,6 @@ const PatientNavbar = () => {
                 </nav>
 
                 <div className="flex items-center gap-2 relative">
-                    <button type="button" aria-label="Search" className="p-2 rounded-full hover:bg-white/10 transition-colors">
-                        <Search className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFFCFC]" />
-                    </button>
                     <div className="relative">
                         <button
                             type="button"

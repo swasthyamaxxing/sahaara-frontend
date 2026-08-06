@@ -136,7 +136,7 @@ const BookAppointment = () => {
         setLoadingAppointments(true)
         try {
             const response = await getAppointments(patientId)
-            setAppointments(response.data ?? [])
+            setAppointments(Array.isArray(response) ? response : [])
         } catch (error) {
             console.error('Failed to load appointments:', error)
             setAppointments([])
@@ -222,7 +222,7 @@ const BookAppointment = () => {
         try {
             const response = editingAppointmentId
                 ? await updateAppointment(editingAppointmentId, payload)
-                : await storeAppointment(payload)
+                : await storeAppointment(payload, String(patientId))
 
             toast.success(response.message || (editingAppointmentId ? 'Appointment updated successfully.' : 'Appointment created successfully.'))
             resetForm()

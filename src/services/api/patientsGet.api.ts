@@ -1,4 +1,25 @@
 import axiosInstance from "../axiosInstance";
+import type { Appointment } from '@/types/appointment.types';
+
+const normalizeAppointments = (payload: unknown): Appointment[] => {
+    if (Array.isArray(payload)) {
+        return payload as Appointment[];
+    }
+
+    if (payload && typeof payload === 'object') {
+        const record = payload as Record<string, unknown>;
+
+        if (Array.isArray(record.data)) {
+            return record.data as Appointment[];
+        }
+
+        if (record.data && typeof record.data === 'object') {
+            return normalizeAppointments(record.data);
+        }
+    }
+
+    return [];
+};
 
 export const getProfile = async () =>{
     const res = await axiosInstance.get(`/user/me`);
@@ -15,9 +36,9 @@ export const getVitals = async (patientId: string) =>{
     return res.data;
 }
 
-export const getAllAppointments = async (patientId: string) => {
-    const res = await axiosInstance.get(`/patients/${patientId}/appointments`);
-    return res.data;
+export const getAllAppointments = async (patientId: string): Promise<Appointment[]> => {
+    const res = await axiosInstance.get<unknown>(`/patients/${patientId}/appointments`);
+    return normalizeAppointments(res.data);
 }
 
 export const getAppointmentById = async (patientId: string, appointmentId: string) => {

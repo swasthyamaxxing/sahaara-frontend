@@ -5,9 +5,10 @@ import { getUserId } from '@/lib/utils';
 import { getAllAppointments } from '@/services/api/patientsGet.api';
 import AppointmentList from '@/components/appointments/AppointmentList';
 import { Loader2 } from 'lucide-react';
+import type { Appointment } from '@/types/appointment.types';
 
 const AppointmentsPage = () => {
-  const [appointments, setAppointments] = useState<any[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,8 +24,7 @@ const AppointmentsPage = () => {
 
       try {
         const response = await getAllAppointments(patientId);
-        const data = response?.data || response;
-        setAppointments(Array.isArray(data) ? data : []);
+        setAppointments(Array.isArray(response) ? response : []);
       } catch (err) {
         console.error('Error fetching appointments:', err);
         setError('Failed to load appointments. Please try again later.');

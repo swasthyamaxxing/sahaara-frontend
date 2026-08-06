@@ -36,14 +36,24 @@ const AppointmentCard = ({ appointment, isUpcoming }: AppointmentCardProps) => {
       !isUpcoming && "opacity-80 grayscale-[0.2]"
     )}>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div className="flex items-center gap-2 text-brand-red font-bold text-lg">
-            <Calendar className="w-5 h-5" />
-            <span>{formattedDate}</span>
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div className="flex flex-col gap-2 min-w-0">
+            <div className="flex items-center gap-2 text-brand-red font-bold text-lg">
+              <Calendar className="w-5 h-5" />
+              <span className="truncate">{formattedDate}</span>
+            </div>
+            <div className="flex items-center gap-2 text-[#554240] font-medium text-sm">
+              <Clock className="w-4 h-4" />
+              <span>{formattedTime}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-[#554240] font-medium text-sm">
-            <Clock className="w-4 h-4" />
-            <span>{formattedTime}</span>
+          <div className={cn(
+            "shrink-0 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-tighter",
+            isUpcoming
+              ? "bg-green-100 text-green-700 border border-green-200"
+              : "bg-gray-100 text-gray-600 border border-gray-200"
+          )}>
+            {isUpcoming ? 'Upcoming' : 'Past'}
           </div>
         </div>
 
