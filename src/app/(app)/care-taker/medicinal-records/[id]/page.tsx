@@ -4,6 +4,7 @@ import { Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import MedicationScheduleView from '@/components/medications/MedicationScheduleView';
 import { parsePatientIdParam } from '@/lib/apiHelpers';
+import Link from 'next/link';
 
 const MedicinalRecordsPage = () => {
   const params = useParams<{ id: string }>();
@@ -29,13 +30,15 @@ const MedicinalRecordsPage = () => {
               Track today&apos;s prescriptions and dose timings for your patients.
             </p>
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-4 py-3 text-sm font-semibold text-[#D7C6A8] transition-colors hover:bg-[#7a1821]"
-          >
-            <Plus className="h-4 w-4" />
-            Log Medicine
-          </button>
+          <Link href={`/care-taker/medicinal-records?patientId=${patientId}`}>
+            <button
+              type="button"
+              className="inline-flex hover:cursor-pointer items-center justify-center gap-2 rounded-full bg-brand-red px-4 py-3 text-sm font-semibold text-[#D7C6A8] transition-colors hover:bg-[#7a1821]"
+            >
+              <Plus className="h-4 w-4" />
+              Log Medicine
+            </button>
+          </Link>
         </div>
 
         <MedicationScheduleView patientId={patientId} />
