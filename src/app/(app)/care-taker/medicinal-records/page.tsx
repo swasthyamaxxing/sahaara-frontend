@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { postMedication } from '@/services/api/medication.api';
@@ -314,4 +314,12 @@ const AddMedicine = () => {
   );
 };
 
-export default AddMedicine;
+const AddMedicinePage = () => {
+  return(
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddMedicine />
+    </Suspense>
+  )
+}
+
+export default AddMedicinePage;
