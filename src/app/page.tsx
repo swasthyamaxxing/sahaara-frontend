@@ -13,7 +13,7 @@ import background from '@/assets/b.png'
 import { BookOpen, Users, NotebookPen, Lightbulb, Heart, Menu, Pill, CalendarCheck, Folder, Home as HomeIcon } from "lucide-react";
 import dhakaBG from '@/assets/dhakaBG.png'
 import hands from '@/assets/hands_nobg.png'
-import logo from '@/assets/logos/app_logo_no_bg.jpg'
+import logo from '@/assets/logos/app_logo_no_bg.png'
 
 const journeySteps = [
   {
