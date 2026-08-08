@@ -11,7 +11,7 @@ import second from '@/assets/second.png'
 import { useState } from 'react';
 import third from '@/assets/third.png'
 import background from '@/assets/b.png'
-import { BookOpen, Users, NotebookPen, Lightbulb, Heart, Menu, Pill, CalendarCheck, Folder } from "lucide-react";
+import { BookOpen, Users, NotebookPen, Lightbulb, Heart, Menu, Pill, CalendarCheck, Folder, Home as HomeIcon } from "lucide-react";
 import dhakaBG from '@/assets/dhakaBG.png'
 import hands from '@/assets/hands_nobg.png'
 
@@ -77,13 +77,17 @@ export default function Home() {
             <div className="flex flex-col gap-4 items-start">
               <div className="inline-flex flex-col gap-4 items-start">
                 <div className="flex items-center gap-4 w-max">
-                  <button className="bg-brand-red flex gap-2 items-center justify-center text-[#e1d4be] py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
-                    Get Started
-                    <ArrowRight className="text-[#e1d4be]" size={20} />
-                  </button>
-                  <button className="border border-brand-red text-brand-red py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
-                    Learn More
-                  </button>
+                  <Link href={`/login`}>
+                    <button className="bg-brand-red flex gap-2 items-center justify-center text-[#e1d4be] py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
+                      Get Started
+                      <ArrowRight className="text-[#e1d4be]" size={20} />
+                    </button>
+                  </Link>
+                  <Link href={`#about`}>
+                    <button className="border border-brand-red text-brand-red py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
+                      Learn More
+                    </button>
+                  </Link>
                 </div>
                 <div className="flex flex-col items-center self-center">
                   <ArrowDown className="text-brand-red" size={32} />
@@ -123,7 +127,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full min-h-screen relative flex flex-col gap-16 items-center justify-center overflow-hidden py-16">
+        <section aria-label="#about" className="w-full min-h-screen relative flex flex-col gap-16 items-center justify-center overflow-hidden py-16">
           <Image
             src={tree}
             alt="Tree"
@@ -256,22 +260,20 @@ export default function Home() {
         </section>
         <section className="w-full min-h-screen flex flex-col lg:flex-row overflow-hidden">
           {/* Left - Dhaka background + phone mockup */}
-          <div className="relative flex-1 min-h-125 lg:min-h-screen flex items-center justify-center">
+          <div className="relative flex-1 min-h-[500px] lg:min-h-screen flex items-center justify-center">
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${dhakaBG.src})` }}
             />
-            <div className="relative z-10 w-65 h-140 bg-black rounded-[2.5rem] p-2 shadow-2xl">
+            <div className="relative z-10 w-[260px] h-[560px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
               <div className="w-full h-full bg-[#e1d4be] rounded-[2rem] overflow-hidden flex flex-col">
-                {/* App header */}
                 <div className="bg-[#60181e] text-[#e1d4be] flex items-center justify-between px-4 py-3">
                   <div className="flex items-center gap-2 font-bold">
-                    <Home />
+                    <HomeIcon />
                     Sahaara
                   </div>
                   <Menu size={18} />
                 </div>
-                {/* App body (simplified box content) */}
                 <div className="flex-1 p-4 flex flex-col gap-3">
                   <div>
                     <h3 className="font-bold text-[#60181e] text-sm">
@@ -300,14 +302,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right - text + hands image */}
-          <div className="relative flex-1 min-h-125 lg:min-h-screen bg-[#e1d4be] flex flex-col justify-between px-8 py-12 lg:px-16">
-            <h2 className="text-4xl font-bold text-[#60181e] uppercase text-right tracking-wide">
-              What we built
-            </h2>
+          {/* Right - text + hands image (hands now breaks out to screen edge) */}
+          <div className="relative flex-1 min-h-[500px] lg:min-h-screen bg-[#e1d4be] overflow-hidden">
+            {/* Hands: absolutely positioned against the section, ignores column padding */}
+            <div className="absolute right-0 bottom-0 top-0 w-[55%] lg:w-[60%] z-0">
+              <Image
+                src={hands}
+                alt="Hands"
+                fill
+                className="object-contain object-right-bottom"
+                loading="eager"
+              />
+            </div>
 
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-              <div className="flex-1 flex flex-col gap-6">
+            {/* Text content sits above the hands, still padded normally */}
+            <div className="relative z-10 flex flex-col justify-between h-full px-8 py-12 lg:px-16">
+              <h2 className="text-4xl font-bold text-[#60181e] uppercase text-right tracking-wide">
+                What we built
+              </h2>
+
+              <div className="flex-1 flex flex-col justify-center gap-6 max-w-md">
                 <p className="text-xl font-bold text-[#60181e] leading-snug">
                   SAHARA is a one stop platform for all your geriatric care needs.
                 </p>
@@ -324,21 +338,13 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="relative flex-1 w-full h-75 lg:h-100">
-                <Image
-                  src={hands}
-                  alt="Hands"
-                  fill
-                  className="object-contain object-right"
-                  loading="eager"
-                />
+              <div className="flex justify-end">
+                <Link href={`/register`}>
+                  <button className="bg-[#60181e] hover:cursor-pointer text-[#e1d4be] font-bold tracking-wider py-4 px-8 rounded-full hover:bg-[#4a1218] transition-colors">
+                    JOIN SAHARA
+                  </button>
+                </Link>
               </div>
-            </div>
-
-            <div className="flex justify-end">
-              <button className="bg-[#60181e] text-[#e1d4be] font-bold tracking-wider py-4 px-8 rounded-full hover:bg-[#4a1218] transition-colors">
-                JOIN SAHARA
-              </button>
             </div>
           </div>
         </section>
