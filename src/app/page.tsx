@@ -8,9 +8,46 @@ import { ArrowDown, ArrowRight } from 'lucide-react';
 import tree from '@/assets/tree_no_bg.png'
 import first from '@/assets/first.png'
 import second from '@/assets/second.png'
+import { useState } from 'react';
 import third from '@/assets/third.png'
+import background from '@/assets/b.png'
+import { BookOpen, Users, NotebookPen, Lightbulb, Heart } from "lucide-react";
+
+const journeySteps = [
+  {
+    label: "Research",
+    icon: BookOpen,
+    paragraph:
+      "We started by listening — studying the everyday struggles families face while caring for aging parents.",
+  },
+  {
+    label: "Real stories",
+    icon: Users,
+    paragraph:
+      "We spoke to real caregivers and elders to understand what care actually feels like, not just what it looks like on paper.",
+  },
+  {
+    label: "Solution Design",
+    icon: NotebookPen,
+    paragraph:
+      "Every insight was translated into a thoughtful, human-centered design for how Sahaara should work.",
+  },
+  {
+    label: "Innovation",
+    icon: Lightbulb,
+    paragraph:
+      "We built features that make medication tracking, appointments, and health records simple instead of stressful.",
+  },
+  {
+    label: "SAHARA",
+    icon: Heart,
+    paragraph:
+      "The result: a platform built with empathy, for the people who raised us.",
+  },
+];
 
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(journeySteps.length - 1);
   return (
     <>
       <main className="bg-[#e1d4be] overflow-x-hidden">
@@ -99,11 +136,11 @@ export default function Home() {
                   alt="First"
                   width={300}
                   height={220}
-                  className="w-[280px] h-[200px] object-cover"
+                  className="w-70 h-50 object-cover"
                   loading="eager"
                 />
               </div>
-              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-[240px]">
+              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-60">
                 &quot;Keeping track of medicines has become harder than taking them.&quot;
               </p>
             </div>
@@ -116,11 +153,11 @@ export default function Home() {
                   alt="Second"
                   width={300}
                   height={220}
-                  className="w-[280px] h-[200px] object-cover"
+                  className="w-70 h-50 object-cover"
                   loading="eager"
                 />
               </div>
-              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-[240px]">
+              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-60">
                 &quot;I worry everytime I forget something important.&quot;
               </p>
             </div>
@@ -133,11 +170,11 @@ export default function Home() {
                   alt="Third"
                   width={300}
                   height={220}
-                  className="w-[280px] h-[200px] object-cover"
+                  className="w-70 h-50 object-cover"
                   loading="eager"
                 />
               </div>
-              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-[240px]">
+              <p className="mt-3 text-center text-sm italic text-[#6b4a3a] max-w-60">
                 &quot;I miss having someone around to share the little moments with.&quot;
               </p>
             </div>
@@ -151,6 +188,62 @@ export default function Home() {
             className="absolute -bottom-24 -right-40 z-10 rotate-180"
             loading="eager"
           />
+        </section>
+        <section className="w-full min-h-105 relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${background.src})` }}
+          />
+
+          <div className="relative z-10 flex flex-col items-center justify-center gap-12 py-16 px-6">
+            <h2 className="text-2xl font-bold tracking-widest text-[#60181e] uppercase">
+              Our Journey
+            </h2>
+
+            <div className="flex items-start justify-center gap-4 md:gap-10 w-full max-w-4xl">
+              {journeySteps.map((step, idx) => {
+                const Icon = step.icon;
+                const isActive = idx === activeIndex;
+
+                return (
+                  <div key={step.label} className="flex items-center flex-1">
+                    <button
+                      onClick={() => setActiveIndex(idx)}
+                      className="flex flex-col items-center gap-3 cursor-pointer group"
+                    >
+                      <div
+                        className={`w-24 h-24 rounded-full flex items-center justify-center transition-colors ${isActive
+                            ? "bg-[#60181e]"
+                            : "bg-[#a08c74] group-hover:bg-[#8f7b64]"
+                          }`}
+                      >
+                        <Icon
+                          className={isActive ? "text-white" : "text-[#f3e9d8]"}
+                          size={34}
+                        />
+                      </div>
+                      <span
+                        className={`text-base md:text-lg whitespace-nowrap font-bold ${isActive
+                            ? "text-[#60181e]"
+                            : "text-[#8a5a3c]"
+                          }`}
+                      >
+                        {step.label}
+                      </span>
+                    </button>
+
+                    {idx < journeySteps.length - 1 && (
+                      <div className="flex-1 h-px border-t border-dashed border-[#8a5a3c] mx-2 self-center" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="text-center text-[#6b4a3a] max-w-xl text-xl font-bold">
+              {journeySteps[activeIndex].paragraph}
+            </p>
+          </div>
         </section>
       </main>
     </>
