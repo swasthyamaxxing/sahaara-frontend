@@ -11,7 +11,9 @@ import second from '@/assets/second.png'
 import { useState } from 'react';
 import third from '@/assets/third.png'
 import background from '@/assets/b.png'
-import { BookOpen, Users, NotebookPen, Lightbulb, Heart } from "lucide-react";
+import { BookOpen, Users, NotebookPen, Lightbulb, Heart, Menu, Pill, CalendarCheck, Folder } from "lucide-react";
+import dhakaBG from '@/assets/dhakaBG.png'
+import hands from '@/assets/hands_nobg.png'
 
 const journeySteps = [
   {
@@ -44,6 +46,13 @@ const journeySteps = [
     paragraph:
       "The result: a platform built with empathy, for the people who raised us.",
   },
+];
+
+const features = [
+  { icon: Pill, label: "Medication reminder" },
+  { icon: CalendarCheck, label: "Appointment tracking" },
+  { icon: Folder, label: "Health record in one place" },
+  { icon: Heart, label: "Family collaboration" },
 ];
 
 export default function Home() {
@@ -213,8 +222,8 @@ export default function Home() {
                     >
                       <div
                         className={`w-24 h-24 rounded-full flex items-center justify-center transition-colors ${isActive
-                            ? "bg-[#60181e]"
-                            : "bg-[#a08c74] group-hover:bg-[#8f7b64]"
+                          ? "bg-[#60181e]"
+                          : "bg-[#a08c74] group-hover:bg-[#8f7b64]"
                           }`}
                       >
                         <Icon
@@ -224,8 +233,8 @@ export default function Home() {
                       </div>
                       <span
                         className={`text-base md:text-lg whitespace-nowrap font-bold ${isActive
-                            ? "text-[#60181e]"
-                            : "text-[#8a5a3c]"
+                          ? "text-[#60181e]"
+                          : "text-[#8a5a3c]"
                           }`}
                       >
                         {step.label}
@@ -243,6 +252,94 @@ export default function Home() {
             <p className="text-center text-[#6b4a3a] max-w-xl text-xl font-bold">
               {journeySteps[activeIndex].paragraph}
             </p>
+          </div>
+        </section>
+        <section className="w-full min-h-screen flex flex-col lg:flex-row overflow-hidden">
+          {/* Left - Dhaka background + phone mockup */}
+          <div className="relative flex-1 min-h-125 lg:min-h-screen flex items-center justify-center">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${dhakaBG.src})` }}
+            />
+            <div className="relative z-10 w-65 h-140 bg-black rounded-[2.5rem] p-2 shadow-2xl">
+              <div className="w-full h-full bg-[#e1d4be] rounded-[2rem] overflow-hidden flex flex-col">
+                {/* App header */}
+                <div className="bg-[#60181e] text-[#e1d4be] flex items-center justify-between px-4 py-3">
+                  <div className="flex items-center gap-2 font-bold">
+                    <Home />
+                    Sahaara
+                  </div>
+                  <Menu size={18} />
+                </div>
+                {/* App body (simplified box content) */}
+                <div className="flex-1 p-4 flex flex-col gap-3">
+                  <div>
+                    <h3 className="font-bold text-[#60181e] text-sm">
+                      My Appointments
+                    </h3>
+                    <p className="text-[10px] text-[#8a5a3c]">
+                      Manage your healthcare visits and schedules
+                    </p>
+                  </div>
+                  <div className="bg-white/60 rounded-lg p-3 flex-1">
+                    <p className="text-[10px] font-bold text-[#60181e] mb-2">
+                      Upcoming Appointments
+                    </p>
+                    <div className="bg-white rounded-md p-3 flex flex-col gap-1 text-[10px] text-[#4a3527]">
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold">Sun, August 9, 2026</span>
+                        <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-[8px]">
+                          UPCOMING
+                        </span>
+                      </div>
+                      <span>05:00 PM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right - text + hands image */}
+          <div className="relative flex-1 min-h-125 lg:min-h-screen bg-[#e1d4be] flex flex-col justify-between px-8 py-12 lg:px-16">
+            <h2 className="text-4xl font-bold text-[#60181e] uppercase text-right tracking-wide">
+              What we built
+            </h2>
+
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="flex-1 flex flex-col gap-6">
+                <p className="text-xl font-bold text-[#60181e] leading-snug">
+                  SAHARA is a one stop platform for all your geriatric care needs.
+                </p>
+                <ul className="flex flex-col gap-4">
+                  {features.map(({ icon: Icon, label }) => (
+                    <li
+                      key={label}
+                      className="flex items-center gap-3 text-[#60181e] font-semibold"
+                    >
+                      <Icon size={20} className="text-[#60181e] shrink-0" />
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="relative flex-1 w-full h-75 lg:h-100">
+                <Image
+                  src={hands}
+                  alt="Hands"
+                  fill
+                  className="object-contain object-right"
+                  loading="eager"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <button className="bg-[#60181e] text-[#e1d4be] font-bold tracking-wider py-4 px-8 rounded-full hover:bg-[#4a1218] transition-colors">
+                JOIN SAHARA
+              </button>
+            </div>
           </div>
         </section>
       </main>
