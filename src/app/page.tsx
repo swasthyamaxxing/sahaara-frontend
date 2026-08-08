@@ -4,7 +4,6 @@ import Image from 'next/image'
 import dhaka from '@/assets/dhaka.png'
 import landingBg from '@/assets/landing_hero.png'
 import Link from 'next/link';
-import { ArrowDown, ArrowRight } from 'lucide-react';
 import tree from '@/assets/tree_no_bg.png'
 import first from '@/assets/first.png'
 import second from '@/assets/second.png'
@@ -14,6 +13,7 @@ import background from '@/assets/b.png'
 import { BookOpen, Users, NotebookPen, Lightbulb, Heart, Menu, Pill, CalendarCheck, Folder, Home as HomeIcon } from "lucide-react";
 import dhakaBG from '@/assets/dhakaBG.png'
 import hands from '@/assets/hands_nobg.png'
+import logo from '@/assets/logos/app_logo_no_bg.jpg'
 
 const journeySteps = [
   {
@@ -59,10 +59,15 @@ export default function Home() {
   const [activeIndex, setActiveIndex] = useState(journeySteps.length - 1);
   return (
     <>
-      <main className="bg-[#e1d4be] overflow-x-hidden">
+      <main className="bg-[#ecdfc8] overflow-x-hidden">
         <section className="flex flex-col lg:flex-row items-center justify-between overflow-hidden">
-          <div className="flex-1 min-w-0 h-screen flex flex-col justify-between p-8">
-            <h3 className="text-6xl font-bold text-brand-red">Sahaara</h3>
+          <div className="flex-1 min-w-0 h-screen flex flex-col gap-4 justify-between p-8">
+            <Image
+              src={logo}
+              alt="App logo"
+              width={150}
+              height={150}
+            />
             <div>
               <span className="border border-brand-red text-brand-red py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
                 Geriatric Care
@@ -70,17 +75,16 @@ export default function Home() {
               <h1 className="text-4xl font-bold text-brand-red mt-4">
                 THE HANDS THAT RAISED US <br /> DESERVE HANDS THAT CARE.
               </h1>
-              <p className="text-2xl text-[#a08c74] mt-4">
+              <p className="text-2xl text-[#a08c74] mt-4 max-w-2xl leading-relaxed tracking-tight">
                 Aging is inevitable. Navigating it alone shouldn&apos;t be. Sahara helps families manage medications, appointments, and health records—so care feels less overwhelming and more human.
               </p>
             </div>
-            <div className="flex flex-col gap-4 items-start">
+            <div className="flex flex-col gap-4 pb-10 items-start">
               <div className="inline-flex flex-col gap-4 items-start">
                 <div className="flex items-center gap-4 w-max">
                   <Link href={`/login`}>
                     <button className="bg-brand-red flex gap-2 items-center justify-center text-[#e1d4be] py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
                       Get Started
-                      <ArrowRight className="text-[#e1d4be]" size={20} />
                     </button>
                   </Link>
                   <Link href={`#about`}>
@@ -88,10 +92,6 @@ export default function Home() {
                       Learn More
                     </button>
                   </Link>
-                </div>
-                <div className="flex flex-col items-center self-center">
-                  <ArrowDown className="text-brand-red" size={32} />
-                  <p className="text-center text-[#a08c74]">Scroll Down For More</p>
                 </div>
               </div>
             </div>
@@ -112,18 +112,20 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-[#e1d4be] opacity-60 mix-blend-multiply" />
             <div className="absolute top-4 right-4 flex items-center justify-center p-8 gap-6 z-10">
-              {["Home", "Login"].map((item, idx) => (
+              {["Home", "Contact Us"].map((item, idx) => (
                 <Link
                   key={idx}
-                  href={item == "Home" ? "/" : "/login"}
+                  href={item == "Home" ? "/" : "/contact-us"}
                   className="text-xl text-brand-red"
                 >
                   {item}
                 </Link>
               ))}
-              <button className="border border-brand-red text-brand-red py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
-                Contact Us
-              </button>
+              <Link href={`/login`}>
+                <button className="border border-brand-red text-brand-red py-2 px-4 rounded-full text-xl hover:cursor-pointer hover:bg-brand-red-hover">
+                  Login
+                </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -316,8 +318,8 @@ export default function Home() {
             </div>
 
             {/* Text content sits above the hands, still padded normally */}
-            <div className="relative z-10 flex flex-col justify-between h-full px-8 py-12 lg:px-16">
-              <h2 className="text-4xl font-bold text-[#60181e] uppercase text-right tracking-wide">
+            <div className="relative z-10 my-4 flex flex-col justify-between h-full px-8 py-12 lg:px-16">
+              <h2 className="text-4xl font-bold text-[#60181e] uppercase tracking-wide">
                 What we built
               </h2>
 
@@ -338,7 +340,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex">
                 <Link href={`/register`}>
                   <button className="bg-[#60181e] hover:cursor-pointer text-[#e1d4be] font-bold tracking-wider py-4 px-8 rounded-full hover:bg-[#4a1218] transition-colors">
                     JOIN SAHARA

@@ -11,15 +11,6 @@ const getUnitForLabel = (vitalLabel: string) => {
     if (vitalLabel.includes('heartbeat')) return 'bpm';
     return '';
 };
-
-const getStatusForValue = (value: string | number) => {
-    if (value === '—' || value === '' || value === null || value === undefined) {
-        return 'No Data';
-    }
-
-    return 'Normal';
-};
-
 type VitalLabel = {
     id: number;
     name: string;

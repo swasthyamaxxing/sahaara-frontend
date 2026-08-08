@@ -18,7 +18,7 @@ const PatientNavbar = () => {
     };
 
     return (
-        <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 my-3 sm:my-4">
+        <header className="w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto my-3 sm:my-4">
             <div className="flex h-16 w-full items-center justify-between rounded-3xl md:rounded-full bg-brand-red px-5 sm:px-8 text-white shadow-md">
                 <Link href="/patient/dashboard" className="flex items-center gap-2 font-bold text-[#D7C6A8] text-xl sm:text-2xl hover:text-white transition-colors">
                     <Home className="w-6 h-6 sm:w-7 sm:h-7" />
